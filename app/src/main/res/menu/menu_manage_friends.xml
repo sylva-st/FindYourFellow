@@ -18,15 +18,13 @@
         android:title="Add"
         app:showAsAction="never" />
     <item
-        android:id="@+id/delete_friend"
-        android:orderInCategory="100"
-        android:title="Delete"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/requests"
         android:orderInCategory="100"
         android:title="My Requests"
         app:showAsAction="never" />
-
-
+    <item
+        android:id="@+id/UserID"
+        android:orderInCategory="100"
+        android:title="Get User ID"
+        app:showAsAction="never" />
 </menu>

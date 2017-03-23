@@ -42,35 +42,46 @@ public class ManageFriendsActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.friendsList);
 
-        final ArrayAdapter<String> friendsAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allFriend);
 
-        listView.setAdapter(friendsAdapter);
+        final ManageAdapter adapter = new ManageAdapter(getApplicationContext(), R.layout.delete_item);
+
+
+        /*
+        final ArrayAdapter<String> requestAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRequests);
+        */
+        listView.setAdapter(adapter);
+
 
         String thisUser = mAuth.getCurrentUser().getUid().toString();
 
-        //allFriends.add(thisUser);
-
         Firebase friendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Friends");
+
+        //allRequests.add(thisUser);
 
         friendRef.addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                String friend = dataSnapshot.getValue(String.class);
+                String friend = dataSnapshot.getValue().toString();
+                String id = dataSnapshot.getKey();
 
-                allFriend.add(friend);
+                //allKeys.add(id);
+                adapter.add(friend, id);
 
-                friendsAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
 
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+                goToAccountActivity();
 
             }
 
@@ -84,7 +95,6 @@ public class ManageFriendsActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     void goToAddFriendActivity()
@@ -96,6 +106,19 @@ public class ManageFriendsActivity extends AppCompatActivity {
     void goToRequestActivity()
     {
         Intent intent = new Intent(ManageFriendsActivity.this, RequestActivity.class);
+        startActivity(intent);
+    }
+
+    void goToUserIDActivity()
+    {
+        Intent intent = new Intent(ManageFriendsActivity.this, UserIDActivity.class);
+        startActivity(intent);
+    }
+
+    void goToAccountActivity()
+    {
+        Intent intent = new Intent(ManageFriendsActivity.this, AccountActivity.class);
+        Toast.makeText(getApplicationContext(), "Friend Deleted", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 
@@ -130,12 +153,13 @@ public class ManageFriendsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_LONG).show();
                 goToAddFriendActivity();
                 return true;
-            case R.id.delete_friend:
-                Toast.makeText(getApplicationContext(), "Delete", Toast.LENGTH_LONG).show();
-                return true;
             case R.id.requests:
                 Toast.makeText(getApplicationContext(), "Requests", Toast.LENGTH_LONG).show();
                 goToRequestActivity();
+                return true;
+            case R.id.UserID:
+                Toast.makeText(getApplicationContext(), "Get User ID", Toast.LENGTH_LONG).show();
+                goToUserIDActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

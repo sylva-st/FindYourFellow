@@ -48,12 +48,26 @@ public class AddFriendActivity extends AppCompatActivity {
             {
                 final String searchRequest = searchEdit.getText().toString();
 
-                if (searchRequest == null)
+                String userID = mAuth.getCurrentUser().getUid().toString();
+                //Toast.makeText(AddFriendActivity.this, "userID is " + mAuth.getCurrentUser().getUid().toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(AddFriendActivity.this, "search request is " + searchRequest, Toast.LENGTH_LONG).show();
+
+
+                if (searchRequest.isEmpty())
                     Toast.makeText(AddFriendActivity.this, "Field cannot be left empty", Toast.LENGTH_LONG).show();
+                else if (searchRequest.equals(mAuth.getCurrentUser().getUid().toString()))
+                {
+                    Toast.makeText(AddFriendActivity.this, "You cannot add yourself", Toast.LENGTH_LONG).show();
+                }
                 else
                 {
 
-                    Firebase newFriendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + searchRequest + "/Information/Email");
+                    if (searchRequest.equals("jkl"))
+                    {
+                        Toast.makeText(AddFriendActivity.this, searchRequest, Toast.LENGTH_LONG).show();
+                    }
+
+                    final Firebase newFriendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + searchRequest + "/Information/Email");
 
                     newFriendRef.addValueEventListener(new ValueEventListener()
                     {
@@ -64,12 +78,14 @@ public class AddFriendActivity extends AppCompatActivity {
                             String  friendEmail = dataSnapshot.getValue(String.class);
 
                             if (friendEmail == null)
+                            {
                                 Toast.makeText(AddFriendActivity.this, "User does not exist", Toast.LENGTH_LONG).show();
+                            }
                             else
                             {
                                 FirebaseUser user = mAuth.getCurrentUser();
 
-                                Firebase friendListRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + searchRequest + "/FriendRequest/");
+                                Firebase friendListRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + searchRequest+ "/FriendRequest/");
 
                                 Firebase addRequestRef = friendListRef.child(user.getUid().toString());
 

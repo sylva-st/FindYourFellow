@@ -55,7 +55,7 @@ public class TrackFriendsActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 //String friendName = dataSnapshot.getValue(String.class);
-                String friendName = dataSnapshot.getKey();
+                String friendName = dataSnapshot.getValue().toString();
 
                 allFriend.add(friendName);
 

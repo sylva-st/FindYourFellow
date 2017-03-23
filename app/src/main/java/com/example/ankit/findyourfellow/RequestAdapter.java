@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -28,17 +29,20 @@ import static android.content.ContentValues.TAG;
 public class RequestAdapter extends ArrayAdapter {
 
     private FirebaseAuth mAuth;
-    private List list = new ArrayList();
+    private List list = new ArrayList(); //name
+    private List id = new ArrayList();
 
     public RequestAdapter(Context context, int resource)
     {
         super(context, resource);
     }
 
-    public void add(String object)
+    public void add(String object, String object2)
     {
         list.add(object);
+        id.add(object2);
         super.add(object);
+        super.add(object2);
     }
 
     static class RowHolder
@@ -58,7 +62,9 @@ public class RequestAdapter extends ArrayAdapter {
     public Object getItem(int position)
     {
         return this.list.get(position);
-    }
+    } //name
+
+    public Object getId(int position) { return this.id.get(position);}
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
@@ -87,35 +93,22 @@ public class RequestAdapter extends ArrayAdapter {
                 public void onClick(View v)
                 {
                     mAuth = FirebaseAuth.getInstance();
-                    String thisUser = mAuth.getCurrentUser().getUid().toString();
 
-                    Firebase findRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser);
+                    String friendId = (String) getId(currentPosition);
 
-                    String currentEmail = (String) getItem(currentPosition);
+                    String userId = mAuth.getCurrentUser().getUid().toString();
 
-                    Query requestQuery = findRef.child("FriendRequest").orderByChild("Email").equalTo(currentEmail);
+                    String userEmail = mAuth.getCurrentUser().getEmail().toString();
 
-                    requestQuery.addListenerForSingleValueEvent(new ValueEventListener()
-                    {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot)
-                        {
-                            for (DataSnapshot requestSnapshot: dataSnapshot.getChildren())
-                            {
-                                Toast.makeText(getContext(), "Button Accept clicked", Toast.LENGTH_LONG).show();
-                                //requestSnapshot.getRef().removeValue();
-                            }
-                        }
+                    Firebase friendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + friendId);
 
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError)
-                        {
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
+                    Firebase userRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + userId);
 
-                        }
-                    });
+                    userRef.child("Friends").child(friendId).setValue((String) getItem(currentPosition));
 
-                    Toast.makeText(getContext(), "Button Accept clicked", Toast.LENGTH_LONG).show();
+                    friendRef.child("Friends").child(userId).setValue(userEmail);
+
+                    userRef.child("FriendRequest").child(friendId).removeValue();
                 }
             });
 
@@ -125,8 +118,15 @@ public class RequestAdapter extends ArrayAdapter {
                 @Override
                 public void onClick(View v)
                 {
-                    Toast.makeText(getContext(), "Button Decline clicked", Toast.LENGTH_LONG).show();
+                    mAuth = FirebaseAuth.getInstance();
 
+                    String friendId = (String) getId(currentPosition);
+
+                    String userId = mAuth.getCurrentUser().getUid().toString();
+
+                    Firebase userRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + userId + "/FriendRequest/");
+
+                    userRef.child(friendId).removeValue();
                 }
             });
 

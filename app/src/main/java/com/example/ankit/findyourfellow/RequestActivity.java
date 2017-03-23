@@ -50,6 +50,9 @@ public class RequestActivity extends AppCompatActivity {
 
         requestView = (ListView) findViewById(R.id.requestList);
 
+
+
+
         final RequestAdapter adapter = new RequestAdapter(getApplicationContext(), R.layout.list_item);
 
 
@@ -73,8 +76,8 @@ public class RequestActivity extends AppCompatActivity {
                 String friend = dataSnapshot.getValue(String.class);
                 String id = dataSnapshot.getKey();
 
-                allKeys.add(id);
-                adapter.add(friend);
+                //allKeys.add(id);
+                adapter.add(friend, id);
 
                 adapter.notifyDataSetChanged();
             }
@@ -85,8 +88,9 @@ public class RequestActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+                goToAccountActivity();
 
             }
 
@@ -100,6 +104,13 @@ public class RequestActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    void goToAccountActivity()
+    {
+        Intent intent = new Intent(RequestActivity.this, AccountActivity.class);
+        Toast.makeText(getApplicationContext(), "Friend Managed", Toast.LENGTH_LONG).show();
+        startActivity(intent);
     }
 
     private void userSignOut()
