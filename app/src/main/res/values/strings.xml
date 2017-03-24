@@ -9,4 +9,5 @@
     <string name="title_activity_add_friend">AddFriendActivity</string>
     <string name="title_activity_request">RequestActivity</string>
     <string name="title_activity_user_id">UserIDActivity</string>
+    <string name="title_activity_test_location">testLocationActivity</string>
 </resources>

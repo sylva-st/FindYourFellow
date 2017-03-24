@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ankit.findyourfellow">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".FindYourFellow"
         android:allowBackup="true"
@@ -76,7 +78,17 @@
         <activity
             android:name=".UserIDActivity"
             android:label="@string/title_activity_user_id"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".testLocationActivity"
+            android:label="@string/title_activity_test_location"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ManageFriendsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
+            >
+        </activity>
     </application>
 
 </manifest>
