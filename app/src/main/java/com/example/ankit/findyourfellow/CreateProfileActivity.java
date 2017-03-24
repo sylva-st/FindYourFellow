@@ -1,6 +1,7 @@
 package com.example.ankit.findyourfellow;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -48,6 +49,8 @@ public class CreateProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Create Your Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mFirstName = (EditText) findViewById(R.id.createFirstName);
         mLastName = (EditText) findViewById(R.id.createLastName);

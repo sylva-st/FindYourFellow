@@ -2,6 +2,7 @@ package com.example.ankit.findyourfellow;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -45,6 +46,9 @@ public class RequestActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Friend Requests");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         mAuth = FirebaseAuth.getInstance();
 

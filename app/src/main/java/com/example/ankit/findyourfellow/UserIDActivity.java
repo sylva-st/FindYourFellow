@@ -1,5 +1,6 @@
 package com.example.ankit.findyourfellow;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,12 @@ public class UserIDActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_id);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Your UserID");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         mAuth = FirebaseAuth.getInstance();
 

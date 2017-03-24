@@ -1,6 +1,7 @@
 package com.example.ankit.findyourfellow;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,6 +38,9 @@ public class ManageFriendsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Manage Friends");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         mAuth = FirebaseAuth.getInstance();
 

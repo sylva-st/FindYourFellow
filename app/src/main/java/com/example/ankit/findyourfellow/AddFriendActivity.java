@@ -1,5 +1,6 @@
 package com.example.ankit.findyourfellow;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,8 @@ public class AddFriendActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Friend");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         searchEdit = (EditText) findViewById(R.id.editSearch);
 

@@ -1,6 +1,7 @@
 package com.example.ankit.findyourfellow;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -35,6 +36,10 @@ public class TrackFriendsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Track Friends");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
         mAuth = FirebaseAuth.getInstance();
 
         listView = (ListView) findViewById(R.id.myFriends);

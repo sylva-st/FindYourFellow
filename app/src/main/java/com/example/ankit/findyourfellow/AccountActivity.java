@@ -1,6 +1,7 @@
 package com.example.ankit.findyourfellow;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,6 +33,8 @@ public class AccountActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Welcome");
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         manageFriendsButton = (Button) findViewById(R.id.manageButton);
         trackFriendsButton = (Button) findViewById(R.id.trackButton);
