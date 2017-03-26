@@ -2,29 +2,18 @@ package com.example.ankit.findyourfellow;
 
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class RequestAdapter extends ArrayAdapter {
 
@@ -82,7 +71,7 @@ public class RequestAdapter extends ArrayAdapter {
 
             holder = new RowHolder();
 
-            holder.EMAIL = (TextView) row.findViewById(R.id.list_item_text);
+            holder.EMAIL = (TextView) row.findViewById(R.id.track_item_text);
             holder.ACCEPT = (Button) row.findViewById(R.id.list_item_accept);
             holder.DECLINE = (Button) row.findViewById(R.id.list_item_decline);
 

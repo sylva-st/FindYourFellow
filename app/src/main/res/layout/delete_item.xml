@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true">
 
     <TextView
-        android:id="@+id/list_item_text"
+        android:id="@+id/track_item_text"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:text="TextView"
@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DELETE"
-        android:layout_toEndOf="@+id/list_item_text"
-        android:layout_alignBottom="@+id/list_item_text"
-        android:layout_alignTop="@+id/list_item_text" />
+        android:layout_toEndOf="@+id/track_item_text"
+        android:layout_alignBottom="@+id/track_item_text"
+        android:layout_alignTop="@+id/track_item_text" />
 
 </RelativeLayout>

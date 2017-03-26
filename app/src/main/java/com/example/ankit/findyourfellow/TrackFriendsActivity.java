@@ -44,7 +44,9 @@ public class TrackFriendsActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.myFriends);
 
-        final ArrayAdapter<String> friendsAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allFriend);
+        //final ArrayAdapter<String> friendsAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allFriend);
+
+        final TrackAdapter friendsAdapter = new TrackAdapter(getApplicationContext(), R.layout.track_item);
 
         listView.setAdapter(friendsAdapter);
 
@@ -61,8 +63,9 @@ public class TrackFriendsActivity extends AppCompatActivity {
 
                 //String friendName = dataSnapshot.getValue(String.class);
                 String friendName = dataSnapshot.getValue().toString();
+                String friendKey = dataSnapshot.getKey().toString();
 
-                allFriend.add(friendName);
+                friendsAdapter.add(friendName, friendKey, "testing");
 
                 friendsAdapter.notifyDataSetChanged();
             }

@@ -34,8 +34,8 @@ import java.util.List;
 public class RequestActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private ArrayList<String> allRequests = new ArrayList<String>();
-    private ArrayList<String> allKeys = new ArrayList<String>();
+    //private ArrayList<String> allRequests = new ArrayList<String>();
+    //private ArrayList<String> allKeys = new ArrayList<String>();
     private ListView requestView;
 
     @Override

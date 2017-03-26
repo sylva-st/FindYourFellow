@@ -1,20 +1,14 @@
 package com.example.ankit.findyourfellow;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -79,7 +73,7 @@ public class ManageAdapter extends ArrayAdapter {
 
             holder = new ManageAdapter.RowHolder();
 
-            holder.NAME = (TextView) row.findViewById(R.id.list_item_text);
+            holder.NAME = (TextView) row.findViewById(R.id.track_item_text);
             holder.DELETE = (Button) row.findViewById(R.id.list_item_delete);
 
             holder.DELETE.setOnClickListener(new View.OnClickListener()
