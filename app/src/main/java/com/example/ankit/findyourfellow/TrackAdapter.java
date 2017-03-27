@@ -26,21 +26,22 @@ import java.util.List;
 
 public class TrackAdapter extends ArrayAdapter{
 
-    //private FirebaseAuth mAuth;
-    private List list = new ArrayList(); //name
-    private List id = new ArrayList();
-    private List userLocation = new ArrayList();
+    private FirebaseAuth mAuth;
+    private List email = new ArrayList<>(); //name
+    private List id = new ArrayList<>();
+    private List friendLocations = new ArrayList<>();
 
     public TrackAdapter(Context context, int resource)
     {
         super(context, resource);
     }
 
-    public void add(String object, String object2, String object3)
+    public void add(String object, String object2, String object3, String object4)
     {
-        list.add(object);
+        email.add(object);
         id.add(object2);
-        userLocation.add(object3);
+        friendLocations.add(object3);
+        friendLocations.add(object4);
         super.add(object);
         super.add(object2);
         super.add(object3);
@@ -55,18 +56,23 @@ public class TrackAdapter extends ArrayAdapter{
     @Override
     public int getCount()
     {
-        return this.list.size();
+        return this.email.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return this.list.get(position);
+        return this.email.get(position);
     }
 
     public Object getId(int position) { return this.id.get(position);}
 
-    public Object getUserLocation(int position) { return this.userLocation.get(position);}
+    //public Object getUserLocation(int position) { return this.friendLocations.get(position);}
+
+    public Object getFriendLatitude(int position) { return this.friendLocations.get(position*2);}
+
+    public Object getFriendLongitude(int position) { return this.friendLocations.get((position*2)+1);}
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
@@ -94,58 +100,46 @@ public class TrackAdapter extends ArrayAdapter{
             holder = (RowHolder) row.getTag();
         }
 
-        String FR = (String) getItem(position);
-        holder.EMAIL.setText(FR);
+        String EM = (String) getItem(position);
+        holder.EMAIL.setText(EM);
 
+        Location friendLocation = new Location("");
 
-        //mAuth = FirebaseAuth.getInstance();
+        final Location userLocation = new Location("");
 
+        String fLatitude = (String) getFriendLatitude(currentPosition);
 
-        //String thisUser = mAuth.getCurrentUser().getUid().toString();
+        String fLongitude = (String) getFriendLongitude(currentPosition);
 
-        //List userLocation = new ArrayList();
+        double fLat = Double.parseDouble(fLatitude);
 
-        //userLocation.set(0, 1111);
-        //userLocation.set(1, 2222);
+        double fLong = Double.parseDouble(fLongitude);
 
-        //final Firebase userRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Information");
+        //double d = Double.parseDouble((String) getFriendLatitude(currentPosition));
 
-        /*
-        userRef.addChildEventListener(new ChildEventListener() {
+        friendLocation.setLatitude(fLat);
+
+        friendLocation.setLongitude(fLong);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        String thisUser = mAuth.getCurrentUser().getUid().toString();
+
+        Firebase friendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Information");
+
+        friendRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String userInfo = dataSnapshot.getValue().toString();
-                String userKey = dataSnapshot.getKey().toString();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String userLat = dataSnapshot.child("Latitude").getValue().toString();
+                final String userLong = dataSnapshot.child("Longitude").getValue().toString();
 
-                if (userKey == "Latitude")
-                {
-                    //double latitude = Double.parseDouble(userInfo);
-                    //userLocation.add(0, latitude);
+                double uLat = Double.parseDouble(userLat);
 
-                    //userLocation.set(0,1234.0);
-                }
+                double uLong = Double.parseDouble(userLong);
 
-                if (userKey == "Longitude")
-                {
-                    //double longitude = Double.parseDouble(userInfo);
-                    //userLocation.add(1, longitude);
+                userLocation.setLatitude(uLat);
 
-                    //userLocation.set(1, 9876.0);
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                userLocation.setLongitude(uLong);
 
             }
 
@@ -155,76 +149,9 @@ public class TrackAdapter extends ArrayAdapter{
             }
         });
 
+        float distance = friendLocation.distanceTo(userLocation);
 
-
-        String friendID = (String) getId(position);
-
-        final ArrayList<Double> friendLocation = new ArrayList<>();
-
-        final Firebase friendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + friendID + "/Information");
-
-        userRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String friendInfo = dataSnapshot.getValue().toString();
-                String friendKey = dataSnapshot.getKey().toString();
-
-                if (friendKey == "Latitude")
-                {
-                    double latitude = Double.parseDouble(friendInfo);
-                    friendLocation.add(0, latitude);
-                }
-
-                if (friendKey == "Longitude")
-                {
-                    double longitude = Double.parseDouble(friendInfo);
-                    friendLocation.add(1, longitude);
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
-
-        //LatLng userLoc = new LatLng(userLocation.get(0), userLocation.get(1));
-        //LatLng friendLoc = new LatLng(friendLocation.get(0), friendLocation.get(1));
-       //String DT = (String) getDistance(position);
-
-        float[] distance = {-1};
-
-        Location.distanceBetween(userLocation.get(0), userLocation.get(1),friendLocation.get(0), friendLocation.get(1), distance);
-
-        holder.DISTANCE.setText(String.valueOf(distance[0]));
-*/
-        //float[] distance = {-1};
-        //Location.distanceBetween(0,0,0,0,distance);
-        //String DT = (String) getId(position);
-
-        //userLocation.add(1111);
-        //userLocation.set(1, 2222);
-
-        String DT = (String) getUserLocation(currentPosition);
-        //String DT = (String.valueOf(0));
-        //holder.DISTANCE.setText(String.valueOf(userLocation.get(0)));
-        holder.DISTANCE.setText(DT);
+        holder.DISTANCE.setText(String.valueOf(distance));
 
 
         return row;

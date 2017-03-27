@@ -23,7 +23,7 @@ public class LocationHelper extends Service
 
     private LocationListener listener;
     private LocationManager locationManager;
-    private String lastUpdateTime;
+    //private String lastUpdateTime;
 
     private FirebaseAuth mAuth;
 
@@ -52,7 +52,9 @@ public class LocationHelper extends Service
                 intent.putExtra("coordinates", location.getLongitude()+ " " + location.getLatitude());
                 sendBroadcast(intent);
 
-                lastUpdateTime = (DateFormat.getTimeInstance().format(new Date())).toString();
+                String lastUpdateTime = String.valueOf(location.getTime());
+
+                //lastUpdateTime = (DateFormat.getTimeInstance().format(new Date())).toString();
 
                 informationRef.child("Latitude").setValue(location.getLatitude());
 

@@ -21,9 +21,9 @@ import java.util.List;
 public class ManageAdapter extends ArrayAdapter {
 
     private FirebaseAuth mAuth;
-    private List list = new ArrayList();
+    private List name = new ArrayList();
     private List id = new ArrayList();
-    Context c;
+    //Context c;
 
     public ManageAdapter(Context context, int resource)
     {
@@ -31,7 +31,7 @@ public class ManageAdapter extends ArrayAdapter {
     }
 
     public void add(String object, String object2) {
-        list.add(object);
+        name.add(object);
         id.add(object2);
         super.add(object);
         super.add(object2);
@@ -44,12 +44,12 @@ public class ManageAdapter extends ArrayAdapter {
 
     @Override
     public int getCount() {
-        return this.list.size();
+        return this.name.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return this.list.get(position);
+        return this.name.get(position);
     }
 
     public Object getId(int position) {

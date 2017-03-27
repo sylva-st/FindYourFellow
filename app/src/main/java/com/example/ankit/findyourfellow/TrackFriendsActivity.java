@@ -18,6 +18,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class TrackFriendsActivity extends AppCompatActivity {
 
         listView.setAdapter(friendsAdapter);
 
-        String thisUser = mAuth.getCurrentUser().getUid().toString();
+        final String thisUser = mAuth.getCurrentUser().getUid().toString();
 
         //allFriends.add(thisUser);
 
@@ -62,12 +63,29 @@ public class TrackFriendsActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 //String friendName = dataSnapshot.getValue(String.class);
-                String friendName = dataSnapshot.getValue().toString();
-                String friendKey = dataSnapshot.getKey().toString();
+                final String friendName = dataSnapshot.getValue().toString();
+                final String friendKey = dataSnapshot.getKey().toString();
 
-                friendsAdapter.add(friendName, friendKey, "testing");
+                Firebase inforRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + friendKey + "/Information");
 
-                friendsAdapter.notifyDataSetChanged();
+                inforRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final String fLatitude = dataSnapshot.child("Latitude").getValue().toString();
+                        final String fLongitude = dataSnapshot.child("Longitude").getValue().toString();
+
+                        friendsAdapter.add(friendName, friendKey, fLatitude, fLongitude);
+
+                        friendsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+
+
             }
 
             @Override

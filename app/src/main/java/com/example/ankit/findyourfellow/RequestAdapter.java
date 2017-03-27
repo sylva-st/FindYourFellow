@@ -18,7 +18,7 @@ import java.util.List;
 public class RequestAdapter extends ArrayAdapter {
 
     private FirebaseAuth mAuth;
-    private List list = new ArrayList(); //name
+    private List name = new ArrayList(); //name
     private List id = new ArrayList();
 
     public RequestAdapter(Context context, int resource)
@@ -28,7 +28,7 @@ public class RequestAdapter extends ArrayAdapter {
 
     public void add(String object, String object2)
     {
-        list.add(object);
+        name.add(object);
         id.add(object2);
         super.add(object);
         super.add(object2);
@@ -44,14 +44,14 @@ public class RequestAdapter extends ArrayAdapter {
     @Override
     public int getCount()
     {
-        return this.list.size();
+        return this.name.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return this.list.get(position);
-    } //name
+        return this.name.get(position);
+    }
 
     public Object getId(int position) { return this.id.get(position);}
 
