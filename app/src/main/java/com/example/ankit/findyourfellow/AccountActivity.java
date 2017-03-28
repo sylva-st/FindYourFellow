@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +24,7 @@ public class AccountActivity extends AppCompatActivity {
 
     private Button manageFriendsButton;
     private Button trackFriendsButton;
+    private Switch trackSwitch;
 
     private FirebaseAuth mAuth;
 
@@ -38,8 +41,31 @@ public class AccountActivity extends AppCompatActivity {
 
         manageFriendsButton = (Button) findViewById(R.id.manageButton);
         trackFriendsButton = (Button) findViewById(R.id.trackButton);
+        trackSwitch = (Switch) findViewById(R.id.trackingSwitch);
 
         mAuth = FirebaseAuth.getInstance();
+
+        trackSwitch.setChecked(false);
+
+        trackSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if(isChecked){
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    startService(intent);
+                    Toast.makeText(getApplicationContext(),"START", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    stopService(intent);
+
+                    Toast.makeText(getApplicationContext(),"STOP", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
         manageFriendsButton.setOnClickListener(new View.OnClickListener()
         {

@@ -27,10 +27,5 @@
         android:orderInCategory="100"
         android:title="Get User ID"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/testLocation"
-        android:orderInCategory="100"
-        android:title="Test Location"
-        app:showAsAction="never" />
 
 </menu>

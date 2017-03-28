@@ -66,17 +66,50 @@ public class TrackFriendsActivity extends AppCompatActivity {
                 final String friendName = dataSnapshot.getValue().toString();
                 final String friendKey = dataSnapshot.getKey().toString();
 
-                Firebase inforRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + friendKey + "/Information");
+                Firebase infoRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + friendKey + "/Information");
 
-                inforRef.addValueEventListener(new ValueEventListener() {
+                infoRef.addValueEventListener(new ValueEventListener()
+                {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        final String fLatitude = dataSnapshot.child("Latitude").getValue().toString();
-                        final String fLongitude = dataSnapshot.child("Longitude").getValue().toString();
+                    public void onDataChange(DataSnapshot dataSnapshot2)
+                    {
 
-                        friendsAdapter.add(friendName, friendKey, fLatitude, fLongitude);
+                        final String friendLat = dataSnapshot2.child("Latitude").getValue().toString();
 
-                        friendsAdapter.notifyDataSetChanged();
+                        final String friendLong = dataSnapshot2.child("Longitude").getValue().toString();
+
+                        Firebase userRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Information");
+
+                        userRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot3) {
+
+                                String userLat = dataSnapshot3.child("Latitude").getValue().toString();
+
+                                String userLong = dataSnapshot3.child("Longitude").getValue().toString();
+
+                                boolean myTest = friendsAdapter.isAlreadyInList(friendKey);
+
+                                if (myTest)
+                                {
+                                    friendsAdapter.replaceList(friendKey, friendLat, friendLong, userLat, userLong);
+                                    //Toast.makeText(TrackFriendsActivity.this, friendKey + " in list", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    friendsAdapter.add(friendName, friendKey, friendLat, friendLong, userLat, userLong);
+                                    //Toast.makeText(TrackFriendsActivity.this, friendKey + " not in list", Toast.LENGTH_SHORT).show();
+                                }
+
+                                friendsAdapter.notifyDataSetChanged();
+
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -84,9 +117,8 @@ public class TrackFriendsActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
+
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {

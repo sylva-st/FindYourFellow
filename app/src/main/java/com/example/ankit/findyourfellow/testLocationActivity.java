@@ -105,7 +105,6 @@ public class testLocationActivity extends AppCompatActivity
     {
         btn_start.setOnClickListener(new View.OnClickListener()
         {
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
@@ -116,7 +115,6 @@ public class testLocationActivity extends AppCompatActivity
 
         btn_stop.setOnClickListener(new View.OnClickListener()
         {
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LocationHelper.class);

@@ -86,7 +86,7 @@ public class LocationHelper extends Service
 
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,3000,0, listener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0, listener);
 
         //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,3000,0, listener);
     }

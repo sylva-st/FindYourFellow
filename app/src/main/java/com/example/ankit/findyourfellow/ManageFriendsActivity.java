@@ -172,10 +172,6 @@ public class ManageFriendsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Get User ID", Toast.LENGTH_LONG).show();
                 goToUserIDActivity();
                 return true;
-            case R.id.testLocation:
-                //Toast.makeText(getApplicationContext(), "Test Location", Toast.LENGTH_LONG).show();
-                goToTestLocationActivity();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

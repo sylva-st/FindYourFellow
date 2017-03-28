@@ -30,4 +30,12 @@
         android:id="@+id/trackButton"
         android:layout_below="@+id/manageButton"
         android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:id="@+id/trackingSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Switch" />
 </RelativeLayout>

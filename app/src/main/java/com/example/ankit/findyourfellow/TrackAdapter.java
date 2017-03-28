@@ -30,21 +30,24 @@ public class TrackAdapter extends ArrayAdapter{
     private List email = new ArrayList<>(); //name
     private List id = new ArrayList<>();
     private List friendLocations = new ArrayList<>();
+    private List userLocations = new ArrayList<>();
 
     public TrackAdapter(Context context, int resource)
     {
         super(context, resource);
     }
 
-    public void add(String object, String object2, String object3, String object4)
+    public void add(String object, String object2, String object3, String object4, String object5, String object6)
     {
         email.add(object);
         id.add(object2);
         friendLocations.add(object3);
         friendLocations.add(object4);
+        userLocations.add(object5);
+        userLocations.add(object6);
         super.add(object);
         super.add(object2);
-        super.add(object3);
+        //super.add(object3);
     }
 
     static class RowHolder
@@ -67,12 +70,28 @@ public class TrackAdapter extends ArrayAdapter{
 
     public Object getId(int position) { return this.id.get(position);}
 
-    //public Object getUserLocation(int position) { return this.friendLocations.get(position);}
-
     public Object getFriendLatitude(int position) { return this.friendLocations.get(position*2);}
 
     public Object getFriendLongitude(int position) { return this.friendLocations.get((position*2)+1);}
 
+    public Object getUserLatitude(int position) { return this.userLocations.get(position*2);}
+
+    public Object getUserLongitude(int position) { return this.userLocations.get((position*2)+1);}
+
+    public boolean isAlreadyInList(String testId) { return this.id.contains(testId);}
+
+    public void replaceList(String testId, String newFLat, String newFLong, String newULat, String newULong)
+    {
+        int itemIndex = this.id.indexOf(testId);
+
+        this.friendLocations.set((itemIndex*2), newFLat);
+
+        this.friendLocations.set(((itemIndex*2)+1), newFLong);
+
+        this.userLocations.set((itemIndex*2), newULat);
+
+        this.userLocations.set(((itemIndex*2)+1), newULong);
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
@@ -111,9 +130,17 @@ public class TrackAdapter extends ArrayAdapter{
 
         String fLongitude = (String) getFriendLongitude(currentPosition);
 
+        String uLatitude = (String) getUserLatitude(currentPosition);
+
+        String uLongitude = (String) getUserLongitude(currentPosition);
+
         double fLat = Double.parseDouble(fLatitude);
 
         double fLong = Double.parseDouble(fLongitude);
+
+        double uLat = Double.parseDouble(uLatitude);
+
+        double uLong = Double.parseDouble(uLongitude);
 
         //double d = Double.parseDouble((String) getFriendLatitude(currentPosition));
 
@@ -121,38 +148,13 @@ public class TrackAdapter extends ArrayAdapter{
 
         friendLocation.setLongitude(fLong);
 
-        mAuth = FirebaseAuth.getInstance();
+        userLocation.setLatitude(uLat);
 
-        String thisUser = mAuth.getCurrentUser().getUid().toString();
-
-        Firebase friendRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Information");
-
-        friendRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                final String userLat = dataSnapshot.child("Latitude").getValue().toString();
-                final String userLong = dataSnapshot.child("Longitude").getValue().toString();
-
-                double uLat = Double.parseDouble(userLat);
-
-                double uLong = Double.parseDouble(userLong);
-
-                userLocation.setLatitude(uLat);
-
-                userLocation.setLongitude(uLong);
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
+        userLocation.setLongitude(uLong);
 
         float distance = friendLocation.distanceTo(userLocation);
 
         holder.DISTANCE.setText(String.valueOf(distance));
-
 
         return row;
 
