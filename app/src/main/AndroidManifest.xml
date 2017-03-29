@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ankit.findyourfellow">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -80,24 +80,36 @@
         <activity
             android:name=".UserIDActivity"
             android:label="@string/title_activity_user_id"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ManageFriendsActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
-            >
-        </activity>
-        <activity
-            android:name=".testLocationActivity"
-            android:label="@string/title_activity_test_location"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ManageFriendsActivity">
+            android:parentActivityName=".ManageFriendsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
             >
         </activity>
-        <service android:name=".LocationHelper"/>
+        <activity
+            android:name=".testLocationActivity"
+            android:label="@string/title_activity_test_location"
+            android:parentActivityName=".ManageFriendsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
+            >
+        </activity>
+
+        <service android:name=".LocationHelper" />
+
+        <activity
+            android:name=".FriendInfoActivity"
+            android:label="@string/title_activity_friend_info"
+            android:parentActivityName=".TrackFriendsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
+            >
+        </activity>
     </application>
 
 </manifest>

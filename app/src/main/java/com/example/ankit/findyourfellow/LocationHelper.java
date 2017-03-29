@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import android.location.LocationListener;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,6 +86,8 @@ public class LocationHelper extends Service
         };
 
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+
+        //Toast.makeText(this, "Attempting to get location", Toast.LENGTH_SHORT).show();
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,30000,0, listener);
 

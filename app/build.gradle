@@ -38,6 +38,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //compile 'com.firebase:firebase-ui:1.0.0'
+    //Google Location and Activity Recognition
+    //Google Maps
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.google.firebase:firebase-database:10.2.0'
@@ -45,8 +47,8 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:10.2.0'
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.android.gms:play-services-location:10.2.0'    //Google Location and Activity Recognition
-    compile 'com.google.android.gms:play-services-maps:10.2.0'    //Google Maps
+    compile 'com.google.android.gms:play-services-location:10.2.0'
+    compile 'com.google.android.gms:play-services-maps:10.2.0'
     testCompile 'junit:junit:4.12'
 }
 

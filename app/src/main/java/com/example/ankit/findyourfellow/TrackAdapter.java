@@ -1,6 +1,8 @@
 package com.example.ankit.findyourfellow;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -31,10 +34,12 @@ public class TrackAdapter extends ArrayAdapter{
     private List id = new ArrayList<>();
     private List friendLocations = new ArrayList<>();
     private List userLocations = new ArrayList<>();
+    private Context c;
 
     public TrackAdapter(Context context, int resource)
     {
         super(context, resource);
+        this.c = context;
     }
 
     public void add(String object, String object2, String object3, String object4, String object5, String object6)
@@ -112,6 +117,22 @@ public class TrackAdapter extends ArrayAdapter{
             holder.EMAIL = (TextView) row.findViewById(R.id.track_item_text);
             holder.DISTANCE = (TextView) row.findViewById(R.id.track_item_distance);
 
+
+            holder.EMAIL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(c, "item at position " + currentPosition, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(c, FriendInfoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("FRIENDLATITUDE", (String) getFriendLatitude(currentPosition));
+                    intent.putExtra("FRIENDLONGITUDE", (String) getFriendLongitude(currentPosition));
+                    intent.putExtra("USERLATITUDE", (String) getUserLatitude(currentPosition));
+                    intent.putExtra("USERLONGITUDE", (String) getUserLongitude(currentPosition));
+                    c.startActivity(intent);
+                }
+            });
+
+
             row.setTag(holder);
         }
         else
@@ -119,8 +140,11 @@ public class TrackAdapter extends ArrayAdapter{
             holder = (RowHolder) row.getTag();
         }
 
+
         String EM = (String) getItem(position);
         holder.EMAIL.setText(EM);
+
+
 
         Location friendLocation = new Location("");
 

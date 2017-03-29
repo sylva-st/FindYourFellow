@@ -10,4 +10,7 @@
     <string name="title_activity_request">RequestActivity</string>
     <string name="title_activity_user_id">UserIDActivity</string>
     <string name="title_activity_test_location">testLocationActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_show_map">ShowMapActivity</string>
+    <string name="title_activity_friend_info">FriendInfoActivity</string>
 </resources>
