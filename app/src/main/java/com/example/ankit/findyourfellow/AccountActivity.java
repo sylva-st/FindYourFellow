@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,6 +16,10 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -37,15 +42,45 @@ public class AccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Welcome");
 
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setIcon(R.drawable.logomain2);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         manageFriendsButton = (Button) findViewById(R.id.manageButton);
         trackFriendsButton = (Button) findViewById(R.id.trackButton);
         trackSwitch = (Switch) findViewById(R.id.trackingSwitch);
-
         mAuth = FirebaseAuth.getInstance();
 
-        trackSwitch.setChecked(false);
+        String thisUser = mAuth.getCurrentUser().getUid().toString();
+
+        final Firebase userRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Information/Tracking");
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String canTrack = dataSnapshot.getValue().toString();
+
+                if (canTrack.equals("yes"))
+                {
+                    trackSwitch.setChecked(true);
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    startService(intent);
+                }
+                else
+                {
+                    trackSwitch.setChecked(false);
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    stopService(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         trackSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -54,14 +89,15 @@ public class AccountActivity extends AppCompatActivity {
                 if(isChecked){
                     Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
                     startService(intent);
-                    Toast.makeText(getApplicationContext(),"START", Toast.LENGTH_LONG).show();
+                    userRef.setValue("yes");
+                    //Toast.makeText(getApplicationContext(),"START", Toast.LENGTH_LONG).show();
                 }
                 else
                 {
                     Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
                     stopService(intent);
-
-                    Toast.makeText(getApplicationContext(),"STOP", Toast.LENGTH_LONG).show();
+                    userRef.setValue("no");
+                    //Toast.makeText(getApplicationContext(),"STOP", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -124,9 +160,6 @@ public class AccountActivity extends AppCompatActivity {
                 userSignOut();
                 startActivity(new Intent(AccountActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

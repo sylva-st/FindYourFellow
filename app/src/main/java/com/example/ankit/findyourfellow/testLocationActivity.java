@@ -109,7 +109,7 @@ public class testLocationActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
                 startService(intent);
-                Toast.makeText(getApplicationContext(),"START", Toast.LENGTH_LONG).show();
+               //Toast.makeText(getApplicationContext(),"START", Toast.LENGTH_LONG).show();
             }
         });
 

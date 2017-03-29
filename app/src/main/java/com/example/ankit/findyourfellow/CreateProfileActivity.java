@@ -147,6 +147,10 @@ public class CreateProfileActivity extends AppCompatActivity {
 
                                                     phoneRef.setValue(phoneNumber);
 
+                                                    Firebase trackRef = newRef.child("Tracking");
+
+                                                    trackRef.setValue("yes");
+
                                                     // after email is sent just logout the user and finish this activity
                                                     FirebaseAuth.getInstance().signOut();
 

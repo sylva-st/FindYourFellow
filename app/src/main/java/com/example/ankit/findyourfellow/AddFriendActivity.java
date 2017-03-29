@@ -90,6 +90,8 @@ public class AddFriendActivity extends AppCompatActivity {
                                 Firebase addRequestRef = friendListRef.child(user.getUid().toString());
 
                                 addRequestRef.setValue(user.getEmail().toString());
+
+                                Toast.makeText(AddFriendActivity.this, "Friend request sent", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -130,10 +132,6 @@ public class AddFriendActivity extends AppCompatActivity {
                 startActivity(new Intent(AddFriendActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "Action", Toast.LENGTH_LONG).show();
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

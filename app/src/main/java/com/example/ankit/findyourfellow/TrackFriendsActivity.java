@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -37,6 +38,10 @@ public class TrackFriendsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Track Friends");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.gps);
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -167,10 +172,6 @@ public class TrackFriendsActivity extends AppCompatActivity {
                 startActivity(new Intent(TrackFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "Action", Toast.LENGTH_LONG).show();
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

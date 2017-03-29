@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#000000"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.ankit.findyourfellow.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -16,41 +17,100 @@
     <Button
         android:id="@+id/newCreateButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="69dp"
-        android:text="Create Account"
+        android:layout_height="20dip"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/black"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Create Account"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/newCreateButton"
+        style="@android:style/Widget.Material.Light.Button.Toggle"
+        android:layout_width="100dip"
+        android:layout_height="30dip"
+        android:layout_below="@+id/passwordField"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="79dp"
-        android:text="Login" />
-
-    <EditText
-        android:id="@+id/passwordField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/loginButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:layout_marginTop="35dp"
+        android:background="@drawable/signin"
+        android:elevation="3dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Sign in"
+        android:textColor="@android:color/white" />
 
     <EditText
         android:id="@+id/emailField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/passwordField"
-        android:layout_alignStart="@+id/passwordField"
-        android:layout_marginBottom="34dp"
+        android:layout_width="130dip"
+        android:layout_height="40dip"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:fontFamily="sans-serif-condensed"
+        android:inputType="textEmailAddress"
+        android:scaleType="center"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:textSize="12sp"
+        android:layout_alignTop="@+id/imageView16"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="130dip"
+        android:layout_height="40dip"
+        android:layout_alignBottom="@+id/imageView15"
+        android:layout_alignStart="@+id/emailField"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:background="@android:color/transparent"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_alignEnd="@+id/emailField" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="100dip"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/logo2" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        app:srcCompat="@drawable/userwhite"
+        android:layout_alignTop="@+id/imageView16"
+        android:layout_alignStart="@+id/imageView11" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="21dp"
+        android:layout_toStartOf="@+id/imageView15"
+        app:srcCompat="@drawable/pass" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        app:srcCompat="@drawable/main"
+        android:layout_alignBottom="@+id/imageView11"
+        android:layout_alignStart="@+id/imageView16" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        app:srcCompat="@drawable/main"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

@@ -113,7 +113,7 @@ public class RequestActivity extends AppCompatActivity {
     void goToAccountActivity()
     {
         Intent intent = new Intent(RequestActivity.this, AccountActivity.class);
-        Toast.makeText(getApplicationContext(), "Friend Managed", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Friend Managed", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 
@@ -141,9 +141,6 @@ public class RequestActivity extends AppCompatActivity {
                 userSignOut();
                 startActivity(new Intent(RequestActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

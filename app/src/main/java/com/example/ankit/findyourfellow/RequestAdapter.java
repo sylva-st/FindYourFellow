@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -98,6 +99,8 @@ public class RequestAdapter extends ArrayAdapter {
                     friendRef.child("Friends").child(userId).setValue(userEmail);
 
                     userRef.child("FriendRequest").child(friendId).removeValue();
+
+                    Toast.makeText(getContext(), "Friend added", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -116,6 +119,8 @@ public class RequestAdapter extends ArrayAdapter {
                     Firebase userRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + userId + "/FriendRequest/");
 
                     userRef.child(friendId).removeValue();
+
+                    Toast.makeText(getContext(), "Friend declined", Toast.LENGTH_SHORT).show();
                 }
             });
 

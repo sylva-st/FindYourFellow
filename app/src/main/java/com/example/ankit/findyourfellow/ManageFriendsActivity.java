@@ -126,13 +126,6 @@ public class ManageFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void goToTestLocationActivity()
-    {
-        Intent intent = new Intent(ManageFriendsActivity.this, testLocationActivity.class);
-        Toast.makeText(getApplicationContext(), "Test Location", Toast.LENGTH_LONG).show();
-        startActivity(intent);
-    }
-
     private void userSignOut()
     {
         mAuth.signOut();
@@ -157,19 +150,16 @@ public class ManageFriendsActivity extends AppCompatActivity {
                 startActivity(new Intent(ManageFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "Action", Toast.LENGTH_LONG).show();
-                return true;
             case R.id.add_friend:
-                Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_LONG).show();
                 goToAddFriendActivity();
                 return true;
             case R.id.requests:
-                Toast.makeText(getApplicationContext(), "Requests", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), "Requests", Toast.LENGTH_LONG).show();
                 goToRequestActivity();
                 return true;
             case R.id.UserID:
-                Toast.makeText(getApplicationContext(), "Get User ID", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Get User ID", Toast.LENGTH_LONG).show();
                 goToUserIDActivity();
                 return true;
             default:

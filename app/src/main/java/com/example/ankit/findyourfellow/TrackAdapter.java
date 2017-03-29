@@ -154,7 +154,9 @@ public class TrackAdapter extends ArrayAdapter{
 
         float distance = friendLocation.distanceTo(userLocation);
 
-        holder.DISTANCE.setText(String.valueOf(distance));
+        int intDistance = (int) distance;
+
+        holder.DISTANCE.setText(String.valueOf(intDistance) + "m");
 
         return row;
 

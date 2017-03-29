@@ -8,21 +8,23 @@
 
     <TextView
         android:id="@+id/track_item_text"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
         android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="50sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/list_item_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DELETE"
-        android:layout_toEndOf="@+id/track_item_text"
+        android:layout_width="85dip"
+        android:layout_height="35dip"
         android:layout_alignBottom="@+id/track_item_text"
-        android:layout_alignTop="@+id/track_item_text" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="29dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="DELETE" />
 
 </RelativeLayout>

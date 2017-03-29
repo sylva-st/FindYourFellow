@@ -52,9 +52,9 @@ public class LocationHelper extends Service
                 intent.putExtra("coordinates", location.getLongitude()+ " " + location.getLatitude());
                 sendBroadcast(intent);
 
-                String lastUpdateTime = String.valueOf(location.getTime());
+                //String lastUpdateTime = String.valueOf(location.getTime());
 
-                //lastUpdateTime = (DateFormat.getTimeInstance().format(new Date())).toString();
+                String lastUpdateTime = (DateFormat.getTimeInstance().format(new Date())).toString();
 
                 informationRef.child("Latitude").setValue(location.getLatitude());
 
@@ -86,7 +86,7 @@ public class LocationHelper extends Service
 
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,0, listener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,30000,0, listener);
 
         //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,3000,0, listener);
     }
