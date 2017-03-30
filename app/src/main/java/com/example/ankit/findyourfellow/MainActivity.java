@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser() != null)
                 {
 
-                    goToAccountActivity();
+                    goToTrackActivity();
                     // startActivity(new Intent(LoginActivity.this, AccountActivity.class));
                 }
             }
@@ -139,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void goToAccountActivity()
+    void goToTrackActivity()
     {
-        Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+        Intent intent = new Intent(MainActivity.this, TrackFriendsActivity.class);
         startActivity(intent);
     }
 

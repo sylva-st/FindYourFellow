@@ -4,6 +4,16 @@
     tools:context="com.example.ankit.findyourfellow.MainActivity">
 
     <item
+        android:id="@+id/track"
+        android:orderInCategory="100"
+        android:title="Track"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/manage"
+        android:orderInCategory="100"
+        android:title="Manage"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/signout"
         android:orderInCategory="100"
         android:title="Sign Out"

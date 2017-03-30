@@ -13,13 +13,20 @@
     tools:context="com.example.ankit.findyourfellow.TrackFriendsActivity"
     tools:showIn="@layout/activity_track_friends">
 
+    <Switch
+        android:id="@+id/trackSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Tracking" />
+
     <ListView
+        android:id="@+id/myFriends"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:divider="@null"
-        android:dividerHeight="10dp"
-        android:id="@+id/myFriends" />
+        android:layout_below="@+id/trackSwitch" />
 
 
 </RelativeLayout>

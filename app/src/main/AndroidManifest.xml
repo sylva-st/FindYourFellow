@@ -40,51 +40,46 @@
         <activity
             android:name=".TrackFriendsActivity"
             android:label="@string/title_activity_track_friends"
-            android:parentActivityName=".AccountActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.AccountActivity" />
-            >
         </activity>
         <activity
             android:name=".ManageFriendsActivity"
             android:label="@string/title_activity_manage_friends"
-            android:parentActivityName=".AccountActivity"
+            android:parentActivityName=".TrackFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.AccountActivity" />
+                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
             >
         </activity>
         <activity
             android:name=".AddFriendActivity"
             android:label="@string/title_activity_add_friend"
-            android:parentActivityName=".ManageFriendsActivity"
+            android:parentActivityName=".TrackFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
+                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
             >
         </activity>
         <activity
             android:name=".RequestActivity"
             android:label="@string/title_activity_request"
-            android:parentActivityName=".ManageFriendsActivity"
+            android:parentActivityName=".TrackFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
+                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
             >
         </activity>
         <activity
             android:name=".UserIDActivity"
             android:label="@string/title_activity_user_id"
-            android:parentActivityName=".ManageFriendsActivity"
+            android:parentActivityName=".TrackFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
+                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
             >
         </activity>
         <activity

@@ -4,9 +4,14 @@
     tools:context="com.example.ankit.findyourfellow.MainActivity">
 
     <item
-        android:id="@+id/signout"
+        android:id="@+id/track_activity"
         android:orderInCategory="100"
-        android:title="Sign Out"
+        android:title="Track"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/manage_friends"
+        android:orderInCategory="100"
+        android:title="Manage"
         app:showAsAction="never" />
     <item
         android:id="@+id/add_friend"

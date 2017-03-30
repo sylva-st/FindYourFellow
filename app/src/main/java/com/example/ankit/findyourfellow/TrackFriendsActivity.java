@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.firebase.client.ChildEventListener;
@@ -30,6 +32,7 @@ public class TrackFriendsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ArrayList<String> allFriend = new ArrayList<>();
     private ListView listView;
+    private Switch trackingSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,8 @@ public class TrackFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_friends);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Track Friends");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("Track Friends");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
@@ -50,6 +53,7 @@ public class TrackFriendsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         listView = (ListView) findViewById(R.id.myFriends);
+        trackingSwitch = (Switch) findViewById(R.id.trackSwitch);
 
         //final ArrayAdapter<String> friendsAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allFriend);
 
@@ -58,6 +62,54 @@ public class TrackFriendsActivity extends AppCompatActivity {
         listView.setAdapter(friendsAdapter);
 
         final String thisUser = mAuth.getCurrentUser().getUid().toString();
+
+        final Firebase trackingRef = new Firebase("https://findyourfellow.firebaseio.com/Users/" + thisUser + "/Information/Tracking");
+
+        trackingRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String canTrack = dataSnapshot.getValue().toString();
+
+                if (canTrack.equals("yes"))
+                {
+                    trackingSwitch.setChecked(true);
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    startService(intent);
+                }
+                else
+                {
+                    trackingSwitch.setChecked(false);
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    stopService(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        trackingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if(isChecked){
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    startService(intent);
+                    trackingRef.setValue("yes");
+                    //Toast.makeText(getApplicationContext(),"START", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+                    stopService(intent);
+                    trackingRef.setValue("no");
+                    //Toast.makeText(getApplicationContext(),"STOP", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
         //allFriends.add(thisUser);
 
@@ -154,6 +206,12 @@ public class TrackFriendsActivity extends AppCompatActivity {
     }
 
 
+    void goToManageActivity()
+    {
+        Intent intent = new Intent(TrackFriendsActivity.this, ManageFriendsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -172,6 +230,8 @@ public class TrackFriendsActivity extends AppCompatActivity {
                 startActivity(new Intent(TrackFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.manage:
+                goToManageActivity();
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -94,7 +94,7 @@ public class RequestActivity extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot)
             {
-                goToAccountActivity();
+                goToTrackActivity();
 
             }
 
@@ -110,10 +110,28 @@ public class RequestActivity extends AppCompatActivity {
         });
     }
 
-    void goToAccountActivity()
+    void goToTrackActivity()
     {
-        Intent intent = new Intent(RequestActivity.this, AccountActivity.class);
+        Intent intent = new Intent(RequestActivity.this, TrackFriendsActivity.class);
         //Toast.makeText(getApplicationContext(), "Friend Managed", Toast.LENGTH_LONG).show();
+        startActivity(intent);
+    }
+
+    void goToAddFriendActivity()
+    {
+        Intent intent = new Intent(RequestActivity.this, AddFriendActivity.class);
+        startActivity(intent);
+    }
+
+    void goToUserIDActivity()
+    {
+        Intent intent = new Intent(RequestActivity.this, UserIDActivity.class);
+        startActivity(intent);
+    }
+
+    void goToManageActivity()
+    {
+        Intent intent = new Intent(RequestActivity.this, ManageFriendsActivity.class);
         startActivity(intent);
     }
 
@@ -126,7 +144,7 @@ public class RequestActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_manage_friends, menu);
         return true;
     }
 
@@ -137,11 +155,25 @@ public class RequestActivity extends AppCompatActivity {
     {
         switch(item.getItemId())
         {
-            case R.id.signout:
+            /*case R.id.signout:
                 userSignOut();
                 startActivity(new Intent(RequestActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
                 return true;
+                */
+            case R.id.track_activity:
+                goToTrackActivity();
+                return true;
+            case R.id.add_friend:
+                //  Toast.makeText(getApplicationContext(), "Requests", Toast.LENGTH_LONG).show();
+                goToAddFriendActivity();
+                return true;
+            case R.id.UserID:
+                //Toast.makeText(getApplicationContext(), "Get User ID", Toast.LENGTH_LONG).show();
+                goToUserIDActivity();
+                return true;
+            case R.id.manage_friends:
+                goToManageActivity();
             default:
                 return super.onOptionsItemSelected(item);
         }

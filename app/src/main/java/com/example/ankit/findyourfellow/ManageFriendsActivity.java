@@ -126,6 +126,13 @@ public class ManageFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    void goToTrackActivity()
+    {
+        Intent intent = new Intent(ManageFriendsActivity.this, TrackFriendsActivity.class);
+        //Toast.makeText(getApplicationContext(), "Friend Managed", Toast.LENGTH_LONG).show();
+        startActivity(intent);
+    }
+
     private void userSignOut()
     {
         mAuth.signOut();
@@ -145,10 +152,14 @@ public class ManageFriendsActivity extends AppCompatActivity {
     {
         switch(item.getItemId())
         {
-            case R.id.signout:
+            /*case R.id.signout:
                 userSignOut();
                 startActivity(new Intent(ManageFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
+                return true;
+                */
+            case R.id.track_activity:
+                goToTrackActivity();
                 return true;
             case R.id.add_friend:
                 //Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_LONG).show();
