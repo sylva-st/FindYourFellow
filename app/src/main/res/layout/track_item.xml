@@ -11,13 +11,13 @@
         android:id="@+id/track_item_text"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
+        android:layout_marginStart="32dp"
         android:fontFamily="sans-serif-condensed"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        android:layout_alignBaseline="@+id/track_item_distance"
-        android:layout_alignBottom="@+id/track_item_distance"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/track_item_color" />
 
     <TextView
@@ -25,8 +25,7 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/track_item_color"
         android:layout_toEndOf="@+id/track_item_text" />
 
     <ImageView
