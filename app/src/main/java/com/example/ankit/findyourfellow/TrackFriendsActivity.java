@@ -3,6 +3,8 @@ package com.example.ankit.findyourfellow;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -24,8 +26,10 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
+
+
+
 
 public class TrackFriendsActivity extends AppCompatActivity {
 
@@ -33,6 +37,7 @@ public class TrackFriendsActivity extends AppCompatActivity {
     private ArrayList<String> allFriend = new ArrayList<>();
     private ListView listView;
     private Switch trackingSwitch;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +45,67 @@ public class TrackFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_friends);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Track Friends");
+        //getSupportActionBar().setTitle("");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.gps);
+        actionBar.setIcon(R.drawable.logomain2);
+
+
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+
+        Menu menu = bottomNavigationView.getMenu();
+
+        menu.getItem(0).setChecked(false);
+
+        /*
+        Menu menu = bottomNavigationView.getMenu();
+
+        for (int i = 0, size = menu.size(); i < size; i++) {
+
+            if(i == 0)
+                menu.getItem(0).setChecked(true);
+            else
+                menu.getItem(i).setChecked(false);
+        }
+        */
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()) {
+                    case R.id.manage_friends:
+                        //setContentView(R.layout.activity_manage_friends);
+                        goToManageActivity();
+                        return true;
+                    case R.id.information:
+                        goToInformationActivity();
+                        return true;
+                    case R.id.sign_out:
+                        userSignOut();
+                        startActivity(new Intent(TrackFriendsActivity.this, MainActivity.class));
+                        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
+                        return true;
+                   //case R.id.track_activity:
+                        //goToTrackFriendsActivity();
+                        //return true;
+                    //default:
+                      //return super.onOptionsItemSelected(item);
+
+
+                }
+
+
+                return false;
+            }
+        });
+        //getSupportActionBar().setTitle("Track Friends");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -202,6 +262,9 @@ public class TrackFriendsActivity extends AppCompatActivity {
 
     private void userSignOut()
     {
+
+        Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+        stopService(intent);
         mAuth.signOut();
     }
 
@@ -218,6 +281,23 @@ public class TrackFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //void goToTrackFriendsActivity()
+    //{
+       //Intent intent = new Intent(TrackFriendsActivity.this, TrackFriendsActivity.class);
+       //startActivity(intent);
+    //}
+
+
+    @Override
+    protected void onResume() {
+
+        Menu menu = bottomNavigationView.getMenu();
+
+        menu.getItem(0).setChecked(false);
+
+        super.onResume();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -225,8 +305,9 @@ public class TrackFriendsActivity extends AppCompatActivity {
         return true;
     }
 
+
     //manage what happens when options on the toolbar are clicked
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch(item.getItemId())
@@ -246,5 +327,5 @@ public class TrackFriendsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+*/
 }

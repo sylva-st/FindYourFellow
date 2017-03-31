@@ -1,32 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_track_friends"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:animateLayoutChanges="true"
+    android:animationCache="true"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_collapseParallaxMultiplier="0.9"
     tools:context="com.example.ankit.findyourfellow.TrackFriendsActivity"
     tools:showIn="@layout/activity_track_friends">
 
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_gravity="bottom"
+        android:background="#FF006DA6"
+        android:visibility="visible"
+        app:itemTextColor="@android:color/white"
+        design:menu="@menu/menu_track_friends" />
+
     <Switch
         android:id="@+id/trackSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="115dp"
+        android:layout_height="0dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Tracking" />
+        android:text=" Tracking" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="60dip"
+        android:layout_height="60dip"
+        android:layout_gravity="top"
+        android:layout_marginLeft="@android:dimen/app_icon_size"
+        design:srcCompat="@drawable/gps" />
 
     <ListView
         android:id="@+id/myFriends"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="348dp"
+        android:layout_height="344dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/trackSwitch" />
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/trackSwitch"
+        android:layout_gravity="center"
+        android:divider="@null"
+        android:dividerHeight="-25dp"
+        android:visibility="visible" />
 
+</android.support.design.widget.CoordinatorLayout>
 
-</RelativeLayout>

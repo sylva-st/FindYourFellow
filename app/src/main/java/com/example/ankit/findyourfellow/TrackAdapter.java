@@ -121,13 +121,13 @@ public class TrackAdapter extends ArrayAdapter{
             holder.EMAIL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mAuth = FirebaseAuth.getInstance();
+
                     Toast.makeText(c, "item at position " + currentPosition, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(c, FriendInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("FRIENDLATITUDE", (String) getFriendLatitude(currentPosition));
-                    intent.putExtra("FRIENDLONGITUDE", (String) getFriendLongitude(currentPosition));
-                    intent.putExtra("USERLATITUDE", (String) getUserLatitude(currentPosition));
-                    intent.putExtra("USERLONGITUDE", (String) getUserLongitude(currentPosition));
+                    intent.putExtra("FRIENDKEY", (String) getId(currentPosition));
+                    intent.putExtra("USERKEY", mAuth.getCurrentUser().getUid().toString());
                     c.startActivity(intent);
                 }
             });

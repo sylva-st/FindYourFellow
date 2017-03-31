@@ -14,4 +14,11 @@
     <string name="title_activity_show_map">ShowMapActivity</string>
     <string name="title_activity_friend_info">FriendInfoActivity</string>
     <string name="title_activity_information">InformationActivity</string>
+    <string name="manage">Manage</string>
+    <string name="track">Track</string>
+    <string name="info">Info</string>
+    <string name="logout">Logout</string>
+    <string name="add">Add</string>
+    <string name="my_requests">My Requests</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

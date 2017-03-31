@@ -3,6 +3,8 @@ package com.example.ankit.findyourfellow;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class ManageFriendsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ArrayList<String> allFriend = new ArrayList<>();
     private ListView listView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,54 @@ public class ManageFriendsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Manage Friends");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+
+        Menu menu = bottomNavigationView.getMenu();
+
+        menu.getItem(1).setChecked(false);
+
+
+        /*
+        Menu menu = bottomNavigationView.getMenu();
+
+        for (int i = 0, size = menu.size(); i < size; i++) {
+
+            if(i == 1)
+                menu.getItem(1).setChecked(true);
+            else
+                menu.getItem(i).setChecked(false);
+        }
+        */
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()) {
+                    //case R.id.manage_friends:
+                        //goToManageActivity();
+                        //return true;
+                    case R.id.information:
+                        goToInformationActivity();
+                        return true;
+                    case R.id.sign_out:
+                        userSignOut();
+                        startActivity(new Intent(ManageFriendsActivity.this, MainActivity.class));
+                        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
+                        return true;
+                    case R.id.track_activity:
+                        goToTrackActivity();
+                        return true;
+
+
+                }
+
+
+                return false;
+            }
+        });
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -113,11 +164,11 @@ public class ManageFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void goToUserIDActivity()
-    {
-        Intent intent = new Intent(ManageFriendsActivity.this, UserIDActivity.class);
-        startActivity(intent);
-    }
+    //void goToUserIDActivity()
+   // {
+     //   Intent intent = new Intent(ManageFriendsActivity.this, UserIDActivity.class);
+    //    startActivity(intent);
+  //  }
 
     void goToAccountActivity()
     {
@@ -133,6 +184,13 @@ public class ManageFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+   // void goToManageActivity()
+    //{
+        //Intent intent = new Intent(ManageFriendsActivity.this, ManageFriendsActivity.class);
+        //startActivity(intent);
+    //}
+
+
     void goToInformationActivity()
     {
         Intent intent = new Intent(ManageFriendsActivity.this, InformationActivity.class);
@@ -142,24 +200,35 @@ public class ManageFriendsActivity extends AppCompatActivity {
 
     private void userSignOut()
     {
+        Intent intent = new Intent(getApplicationContext(), LocationHelper.class);
+        stopService(intent);
         mAuth.signOut();
     }
 
+    @Override
+    protected void onResume() {
+
+        Menu menu = bottomNavigationView.getMenu();
+
+        menu.getItem(1).setChecked(false);
+
+        super.onResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_manage_friends, menu);
+        getMenuInflater().inflate(R.menu.menu_managerbutton, menu);
         return true;
     }
 
     //manage what happens when options on the toolbar are clicked
-    @Override
+   @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch(item.getItemId())
         {
-            case R.id.track_activity:
+            /*case R.id.track_activity:
                 goToTrackActivity();
                 return true;
             case R.id.information:
@@ -169,7 +238,7 @@ public class ManageFriendsActivity extends AppCompatActivity {
                 userSignOut();
                 startActivity(new Intent(ManageFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
-                return true;
+                return true; */
             case R.id.add_friend:
                 //Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_LONG).show();
                 goToAddFriendActivity();

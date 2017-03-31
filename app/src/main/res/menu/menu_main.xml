@@ -7,20 +7,24 @@
         android:id="@+id/track"
         android:orderInCategory="100"
         android:title="Track"
+        android:visible="false"
         app:showAsAction="never" />
     <item
         android:id="@+id/manage"
         android:orderInCategory="100"
         android:title="Manage"
+        android:visible="false"
         app:showAsAction="never" />
     <item
         android:id="@+id/info"
         android:orderInCategory="100"
         android:title="Information"
+        android:visible="false"
         app:showAsAction="never" />
     <item
         android:id="@+id/signout"
         android:orderInCategory="100"
         android:title="Sign Out"
+        android:visible="false"
         app:showAsAction="never" />
 </menu>
