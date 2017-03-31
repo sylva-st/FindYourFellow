@@ -40,36 +40,30 @@
         <activity
             android:name=".TrackFriendsActivity"
             android:label="@string/title_activity_track_friends"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ManageFriendsActivity"
             android:label="@string/title_activity_manage_friends"
-            android:parentActivityName=".TrackFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
-            >
         </activity>
         <activity
             android:name=".AddFriendActivity"
             android:label="@string/title_activity_add_friend"
-            android:parentActivityName=".TrackFriendsActivity"
+            android:parentActivityName=".ManageFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
+                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
             >
         </activity>
         <activity
             android:name=".RequestActivity"
             android:label="@string/title_activity_request"
-            android:parentActivityName=".TrackFriendsActivity"
+            android:parentActivityName=".ManageFriendsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
+                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
             >
         </activity>
         <activity
@@ -105,6 +99,10 @@
                 android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
             >
         </activity>
+        <activity
+            android:name=".InformationActivity"
+            android:label="@string/title_activity_information"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

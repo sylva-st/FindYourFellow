@@ -13,4 +13,5 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_show_map">ShowMapActivity</string>
     <string name="title_activity_friend_info">FriendInfoActivity</string>
+    <string name="title_activity_information">InformationActivity</string>
 </resources>

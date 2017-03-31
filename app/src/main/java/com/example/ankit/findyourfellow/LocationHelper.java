@@ -91,7 +91,7 @@ public class LocationHelper extends Service
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,30000,0, listener);
 
-        //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,3000,0, listener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,30000,0, listener);
     }
 
     @Override

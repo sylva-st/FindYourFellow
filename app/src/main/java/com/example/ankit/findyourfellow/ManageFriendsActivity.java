@@ -37,7 +37,7 @@ public class ManageFriendsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Manage Friends");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -133,6 +133,13 @@ public class ManageFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    void goToInformationActivity()
+    {
+        Intent intent = new Intent(ManageFriendsActivity.this, InformationActivity.class);
+        //Toast.makeText(getApplicationContext(), "Friend Managed", Toast.LENGTH_LONG).show();
+        startActivity(intent);
+    }
+
     private void userSignOut()
     {
         mAuth.signOut();
@@ -152,14 +159,16 @@ public class ManageFriendsActivity extends AppCompatActivity {
     {
         switch(item.getItemId())
         {
-            /*case R.id.signout:
+            case R.id.track_activity:
+                goToTrackActivity();
+                return true;
+            case R.id.information:
+                goToInformationActivity();
+                return true;
+            case R.id.sign_out:
                 userSignOut();
                 startActivity(new Intent(ManageFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
-                return true;
-                */
-            case R.id.track_activity:
-                goToTrackActivity();
                 return true;
             case R.id.add_friend:
                 //Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_LONG).show();
@@ -168,10 +177,6 @@ public class ManageFriendsActivity extends AppCompatActivity {
             case R.id.requests:
               //  Toast.makeText(getApplicationContext(), "Requests", Toast.LENGTH_LONG).show();
                 goToRequestActivity();
-                return true;
-            case R.id.UserID:
-                //Toast.makeText(getApplicationContext(), "Get User ID", Toast.LENGTH_LONG).show();
-                goToUserIDActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

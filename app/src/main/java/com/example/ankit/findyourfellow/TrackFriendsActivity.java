@@ -212,6 +212,12 @@ public class TrackFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    void goToInformationActivity()
+    {
+        Intent intent = new Intent(TrackFriendsActivity.this, InformationActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -225,13 +231,17 @@ public class TrackFriendsActivity extends AppCompatActivity {
     {
         switch(item.getItemId())
         {
+            case R.id.manage:
+                goToManageActivity();
+                return true;
+            case R.id.info:
+                goToInformationActivity();
+                return true;
             case R.id.signout:
                 userSignOut();
                 startActivity(new Intent(TrackFriendsActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.manage:
-                goToManageActivity();
             default:
                 return super.onOptionsItemSelected(item);
         }
