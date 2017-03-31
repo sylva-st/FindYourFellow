@@ -30,6 +30,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private EditText mEmail;
     private EditText mPassword;
     private EditText mNumber;
+    private EditText mEmergency;
 
     private Button mCreate;
 
@@ -58,6 +59,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.createEmail);
         mPassword = (EditText) findViewById(R.id.createPassword);
         mNumber = (EditText) findViewById(R.id.createNumber);
+        mEmergency = (EditText) findViewById(R.id.createEmergency);
 
         mCreate = (Button) findViewById(R.id.newProfileButton);
 
@@ -85,6 +87,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         final String email = mEmail.getText().toString();
         final String password = mPassword.getText().toString();
         final String phoneNumber = mNumber.getText().toString();
+        final String emergencyNumber = mEmergency.getText().toString();
 
         if(!(TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(age) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) ||  TextUtils.isEmpty(phoneNumber)))
         {
@@ -146,6 +149,10 @@ public class CreateProfileActivity extends AppCompatActivity {
                                                     Firebase phoneRef = newRef.child("PhoneNumber");
 
                                                     phoneRef.setValue(phoneNumber);
+
+                                                    Firebase emergencyRef = newRef.child("EmergencyNumber1");
+
+                                                    emergencyRef.setValue(emergencyNumber);
 
                                                     Firebase trackRef = newRef.child("Tracking");
 

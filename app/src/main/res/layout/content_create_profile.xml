@@ -90,13 +90,12 @@
         android:id="@+id/newProfileButton"
         android:layout_width="150dip"
         android:layout_height="30dip"
-        android:layout_below="@+id/createNumber"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
         android:background="@drawable/createbutton"
         android:fontFamily="sans-serif-condensed"
         android:text="Create Profile"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -105,5 +104,16 @@
         app:srcCompat="@drawable/userwhite"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/createEmergency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Emergency Number"
+        android:inputType="phone"
+        android:layout_below="@+id/createNumber"
+        android:layout_alignStart="@+id/createNumber"
+        android:layout_marginTop="12dp" />
 
 </RelativeLayout>
