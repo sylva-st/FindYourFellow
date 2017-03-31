@@ -67,16 +67,6 @@
             >
         </activity>
         <activity
-            android:name=".UserIDActivity"
-            android:label="@string/title_activity_user_id"
-            android:parentActivityName=".TrackFriendsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.TrackFriendsActivity" />
-            >
-        </activity>
-        <activity
             android:name=".testLocationActivity"
             android:label="@string/title_activity_test_location"
             android:parentActivityName=".ManageFriendsActivity"
