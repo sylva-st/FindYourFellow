@@ -53,9 +53,9 @@ public class FriendInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                email.setText(dataSnapshot.child("Email").getValue().toString());
+                email.setText(dataSnapshot.child("FirstName").getValue().toString() + " " + dataSnapshot.child("LastName").getValue().toString());
                 phone.setText(dataSnapshot.child("PhoneNumber").getValue().toString());
-                emergency.setText(dataSnapshot.child("PhoneNumber").getValue().toString());
+                emergency.setText(dataSnapshot.child("EmergencyNumber1").getValue().toString());
                 time.setText(dataSnapshot.child("LastUpdate").getValue().toString());
             }
 
