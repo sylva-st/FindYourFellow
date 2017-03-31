@@ -3,12 +3,14 @@ package com.example.ankit.findyourfellow;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,7 @@ public class TrackAdapter extends ArrayAdapter{
     {
         TextView EMAIL;
         TextView DISTANCE;
+        ImageView COLOR;
     }
 
     @Override
@@ -116,6 +119,7 @@ public class TrackAdapter extends ArrayAdapter{
 
             holder.EMAIL = (TextView) row.findViewById(R.id.track_item_text);
             holder.DISTANCE = (TextView) row.findViewById(R.id.track_item_distance);
+            holder.COLOR = (ImageView) row.findViewById(R.id.track_item_color);
 
 
             holder.EMAIL.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +185,14 @@ public class TrackAdapter extends ArrayAdapter{
         int intDistance = (int) distance;
 
         holder.DISTANCE.setText(String.valueOf(intDistance) + "m");
+
+        if (intDistance <= 50)
+            holder.COLOR.setBackgroundColor(Color.GREEN);
+        else if (intDistance <= 100)
+            holder.COLOR.setBackgroundColor(Color.YELLOW);
+        else
+            holder.COLOR.setBackgroundColor(Color.RED);
+
 
         return row;
 
