@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected Button createProfileButton;
     protected Button loginToProfileButton;
+    protected Button reset;
 
     private EditText EmailField;
     private EditText PassworField;
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         createProfileButton = (Button) findViewById(R.id.newCreateButton);
         loginToProfileButton = (Button) findViewById(R.id.loginButton);
+        reset = (Button) findViewById(R.id.resetButton);
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener()
         {
@@ -96,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 startLogin();
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetPassword();
             }
         });
     }
@@ -152,6 +164,31 @@ public class MainActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    private void resetPassword()
+    {
+        String email = EmailField.getText().toString();
+        if(!(TextUtils.isEmpty(email)))
+        {
+
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(!(task.isSuccessful()))
+                    {
+                        Toast.makeText(MainActivity.this, "Email not linked to any account", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+        else
+            Toast.makeText(this, "Email field(s) is empty", Toast.LENGTH_SHORT).show();
+
+    }
+
     private void startLogin()
     {
         String email = EmailField.getText().toString();
@@ -165,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
                     if (!(task.isSuccessful()))
-                        Toast.makeText(MainActivity.this, "Account does not exist", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Email/Password incorrect", Toast.LENGTH_LONG).show();
                     else
                     {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

@@ -30,17 +30,31 @@
 
 
     <Button
-        android:id="@+id/loginButton"
+    android:id="@+id/loginButton"
+    style="@android:style/Widget.Material.Light.Button.Toggle"
+    android:layout_width="100dip"
+    android:layout_height="30dip"
+    android:layout_below="@+id/passwordField"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="35dp"
+    android:background="@drawable/signin"
+    android:elevation="3dp"
+    android:fontFamily="sans-serif-condensed"
+    android:text="Sign in"
+    android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/resetButton"
         style="@android:style/Widget.Material.Light.Button.Toggle"
-        android:layout_width="100dip"
-        android:layout_height="30dip"
-        android:layout_below="@+id/passwordField"
+        android:layout_width="110dip"
+        android:layout_height="40dip"
+        android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:background="@drawable/signin"
         android:elevation="3dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="Sign in"
+        android:text="Change/Reset Password"
         android:textColor="@android:color/white" />
 
     <EditText
