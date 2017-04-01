@@ -32,9 +32,9 @@
         android:id="@+id/sendRequest"
         android:layout_width="130dip"
         android:layout_height="35dip"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="186dp"
+        android:layout_marginTop="138dp"
         android:background="@drawable/button_selector"
         android:text="REQUEST"
         android:textColor="@android:color/white" />

@@ -136,7 +136,7 @@ public class ManageFriendsActivity extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot)
             {
-                goToAccountActivity();
+                goToManageActivity();
 
             }
 
@@ -170,13 +170,6 @@ public class ManageFriendsActivity extends AppCompatActivity {
     //    startActivity(intent);
   //  }
 
-    void goToAccountActivity()
-    {
-        Intent intent = new Intent(ManageFriendsActivity.this, AccountActivity.class);
-        Toast.makeText(getApplicationContext(), "Friend Deleted", Toast.LENGTH_LONG).show();
-        startActivity(intent);
-    }
-
     void goToTrackActivity()
     {
         Intent intent = new Intent(ManageFriendsActivity.this, TrackFriendsActivity.class);
@@ -184,11 +177,11 @@ public class ManageFriendsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-   // void goToManageActivity()
-    //{
-        //Intent intent = new Intent(ManageFriendsActivity.this, ManageFriendsActivity.class);
-        //startActivity(intent);
-    //}
+   void goToManageActivity()
+   {
+        Intent intent = new Intent(ManageFriendsActivity.this, ManageFriendsActivity.class);
+        startActivity(intent);
+   }
 
 
     void goToInformationActivity()

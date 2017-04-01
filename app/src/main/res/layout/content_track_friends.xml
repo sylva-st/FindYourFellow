@@ -25,33 +25,44 @@
         app:itemTextColor="@android:color/white"
         design:menu="@menu/menu_track_friends" />
 
-    <Switch
-        android:id="@+id/trackSwitch"
-        android:layout_width="115dp"
-        android:layout_height="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text=" Tracking" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="60dip"
-        android:layout_height="60dip"
-        android:layout_gravity="top"
-        android:layout_marginLeft="@android:dimen/app_icon_size"
-        design:srcCompat="@drawable/gps" />
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        design:srcCompat="@android:color/black" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="  Distance   Status"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/white"
+        app:layout_anchor="@+id/imageView4"
+        app:layout_anchorGravity="top|right" />
 
     <ListView
         android:id="@+id/myFriends"
-        android:layout_width="348dp"
-        android:layout_height="344dp"
+        android:layout_width="match_parent"
+        android:layout_height="436dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_below="@+id/trackSwitch"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
         android:divider="@null"
         android:dividerHeight="-25dp"
         android:visibility="visible" />
+
+    <Switch
+        android:id="@+id/trackSwitch"
+        android:layout_width="161dp"
+        android:layout_height="52dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="  Track Friends"
+        android:textColor="@android:color/white" />
 
 </android.support.design.widget.CoordinatorLayout>
 

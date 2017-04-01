@@ -18,44 +18,57 @@
         android:id="@+id/newCreateButton"
         android:layout_width="wrap_content"
         android:layout_height="20dip"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
         android:background="@android:color/black"
         android:fontFamily="sans-serif-condensed"
         android:text="Create Account"
         android:textColor="@android:color/white"
         android:textSize="12sp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/imageView12"
+        android:layout_centerHorizontal="true" />
 
 
     <Button
-    android:id="@+id/loginButton"
-    style="@android:style/Widget.Material.Light.Button.Toggle"
-    android:layout_width="100dip"
-    android:layout_height="30dip"
-    android:layout_below="@+id/passwordField"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="35dp"
-    android:background="@drawable/signin"
-    android:elevation="3dp"
-    android:fontFamily="sans-serif-condensed"
-    android:text="Sign in"
-    android:textColor="@android:color/white" />
+        android:id="@+id/loginButton"
+        style="@android:style/Widget.Material.Light.Button.Toggle"
+        android:layout_width="100dip"
+        android:layout_height="30dip"
+        android:layout_below="@+id/passwordField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_selector"
+        android:elevation="3dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Sign in"
+        android:textColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_alignTop="@+id/loginButton"
+        android:elevation="24dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/framemain"
+        android:layout_alignEnd="@+id/loginButton"
+        android:layout_alignBottom="@+id/loginButton" />
 
     <Button
         android:id="@+id/resetButton"
         style="@android:style/Widget.Material.Light.Button.Toggle"
-        android:layout_width="110dip"
-        android:layout_height="40dip"
-        android:layout_below="@+id/loginButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/signin"
-        android:elevation="3dp"
+        android:layout_width="150dip"
+        android:layout_height="30dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView16"
+        android:background="@drawable/button_selector"
+        android:elevation="0dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Change/Reset Password"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/emailField"
@@ -76,14 +89,14 @@
         android:layout_width="130dip"
         android:layout_height="40dip"
         android:layout_alignBottom="@+id/imageView15"
+        android:layout_alignEnd="@+id/emailField"
         android:layout_alignStart="@+id/emailField"
+        android:background="@android:color/transparent"
         android:ems="10"
         android:fontFamily="sans-serif-condensed"
-        android:background="@android:color/transparent"
         android:inputType="textPassword"
         android:textColor="@android:color/white"
-        android:textSize="12sp"
-        android:layout_alignEnd="@+id/emailField" />
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -125,6 +138,16 @@
         app:srcCompat="@drawable/main"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/resetButton"
+        android:layout_alignStart="@+id/resetButton"
+        android:layout_alignTop="@+id/resetButton"
+        android:elevation="22dp"
+        app:srcCompat="@drawable/framemain2" />
 
 
 </RelativeLayout>

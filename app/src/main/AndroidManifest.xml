@@ -34,10 +34,6 @@
             >
         </activity>
         <activity
-            android:name=".AccountActivity"
-            android:label="@string/title_activity_account"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".TrackFriendsActivity"
             android:label="@string/title_activity_track_friends"
             android:theme="@style/AppTheme.NoActionBar"></activity>
