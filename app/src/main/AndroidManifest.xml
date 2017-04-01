@@ -61,16 +61,6 @@
                 android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
             >
         </activity>
-        <activity
-            android:name=".testLocationActivity"
-            android:label="@string/title_activity_test_location"
-            android:parentActivityName=".ManageFriendsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ankit.findyourfellow.ManageFriendsActivity" />
-            >
-        </activity>
 
         <service android:name=".LocationHelper" />
 
